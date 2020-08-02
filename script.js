@@ -13,6 +13,9 @@ function writePassword() {
 
 function generatePassword() {
     var passLength = prompt("How long would you like your passwod? Must be between 8 and 128 characters.");
+    while (passLength > 128 || passLength < 8 || isNaN(passLength)) {
+        var passLength = prompt("How long would you like your passwod? Must be between 8 and 128 characters.");
+    }
 
 
     if (confirm("Would you like a lowercase letter?")) {
@@ -38,12 +41,12 @@ function generatePassword() {
     } else {
         specChar = ""
     }
-
     var charset = lowerCase + upperCase + numChoice + specChar;
     newPassword = "";
     for (var i = 0, n = charset.length; i < passLength; ++i) {
         newPassword += charset.charAt(Math.floor(Math.random() * n));
     }
+
     return newPassword;
 
 }
