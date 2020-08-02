@@ -12,6 +12,38 @@ function writePassword() {
 }
 
 function generatePassword() {
-    return "kevin";
+    var passLength = prompt("How long would you like your passwod? Must be between 8 and 128 characters.");
+
+
+    if (confirm("Would you like a lowercase letter?")) {
+        lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    } else {
+        lowerCase = ""
+    }
+
+    if (confirm("Would you like an uppercase letter?")) {
+        upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    } else {
+        upperCase = ""
+    }
+
+    if (confirm("Would you like a number included?")) {
+        numChoice = "0123456789";
+    } else {
+        numChoice = ""
+    }
+
+    if (confirm("Would you like a special character included? ex. !, $, * ,etc...")) {
+        specChar = "!@#$%^&*()_+/?~";
+    } else {
+        specChar = ""
+    }
+
+    var charset = lowerCase + upperCase + numChoice + specChar;
+    newPassword = "";
+    for (var i = 0, n = charset.length; i < passLength; ++i) {
+        newPassword += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return newPassword;
 
 }
